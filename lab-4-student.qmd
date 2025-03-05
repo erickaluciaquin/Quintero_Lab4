@@ -90,7 +90,11 @@ In your data, you will notice the `#` in front of `yr` in the second row. That i
 
 ```{r}
 #| label: load-data-comment
-
+buoy <- read_table("buoy_2024.txt.webloc") # reads whitespace-separated files
+spec(buoy)
+#> cols(
+#>   year = col_character()
+#> )
 ```
 
 
