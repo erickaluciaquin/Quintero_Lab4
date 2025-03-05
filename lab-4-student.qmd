@@ -1,3 +1,14 @@
+---
+title: "STAT 210 Lab 4 Ericka Quintero"
+author: "Ericka Quintero"
+title: "Lab 3: Exploring Rodents With ggplot2"
+date: "March 5, 2025"
+execute:
+  echo: false
+format:
+  html:
+    code: true
+---
 # Part 1: Setup
 
 ## GitHub Workflow
@@ -38,7 +49,7 @@ In the code chunk below, load in the packages necessary for your analysis. You s
 
 ```{r}
 #| label: setup
-
+install.packages("tidyverse") # load package of all the tidyverse packages
 ```
 
 # Part 2: Data Context
