@@ -1,13 +1,12 @@
 ---
 title: "STAT 210 Lab 4 Ericka Quintero"
 author: "Ericka Quintero"
-title: "Lab 3: Exploring Rodents With ggplot2"
 date: "March 5, 2025"
-execute:
-  echo: false
-format:
+format: 
   html:
-    code: true
+    toc: true
+    code-fold: true
+    echo: true
 ---
 # Part 1: Setup
 
@@ -49,8 +48,7 @@ In the code chunk below, load in the packages necessary for your analysis. You s
 
 ```{r}
 #| label: setup
-install.packages("tidyverse") # load package of all the tidyverse packages
-install.packages("readr") # reads rectangular data from delimited files
+library("tidyverse") # load package of all the tidyverse packages
 ```
 
 # Part 2: Data Context
@@ -103,7 +101,7 @@ We want to use snake_case for our variable names. Use the `janitor` package to c
 
 ```{r}
 #| label: clean-names
-
+buoy |> janitor::clean_names() # snake_case argument, cleans variable names
 ```
 
 ## Step 4: Write the Data Part 1
