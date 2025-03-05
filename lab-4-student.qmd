@@ -50,6 +50,7 @@ In the code chunk below, load in the packages necessary for your analysis. You s
 ```{r}
 #| label: setup
 install.packages("tidyverse") # load package of all the tidyverse packages
+install.packages("readr") # reads rectangular data from delimited files
 ```
 
 # Part 2: Data Context
@@ -79,7 +80,7 @@ When you read in the data give it an appropriate name for what the data represen
 
 ```{r}
 #| label: load-data
-
+read_table("buoy_2024.txt.webloc") # reads whitespace-separated files
 ```
 
 Notice that the data is all read in as a character value and the first row contains information that is not data, but additional information about the variables: this is called a "comment" in the data.  
