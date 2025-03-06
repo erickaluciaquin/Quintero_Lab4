@@ -2,11 +2,11 @@
 title: "STAT 210 Lab 4 Ericka Quintero"
 author: "Ericka Quintero"
 date: "March 5, 2025"
-format: 
-  html:
-    toc: true
-    code-fold: true
-    echo: true
+output:
+  html_document:
+  echo: true
+  embed-resources: true
+  code-tools: true
 ---
 # Part 1: Setup
 
@@ -49,6 +49,7 @@ In the code chunk below, load in the packages necessary for your analysis. You s
 ```{r}
 #| label: setup
 library("tidyverse") # load package of all the tidyverse packages
+library(readr)
 ```
 
 # Part 2: Data Context
@@ -78,7 +79,8 @@ When you read in the data give it an appropriate name for what the data represen
 
 ```{r}
 #| label: load-data
-read_table("buoy_2024.txt.webloc") # reads whitespace-separated files
+buoydata <- read_table("buoy_2024.txt") # reads whitespace-separated files
+# read.table(buoydata)
 ```
 
 Notice that the data is all read in as a character value and the first row contains information that is not data, but additional information about the variables: this is called a "comment" in the data.  
@@ -88,11 +90,8 @@ In your data, you will notice the `#` in front of `yr` in the second row. That i
 
 ```{r}
 #| label: load-data-comment
-buoy <- read_table("buoy_2024.txt.webloc") # reads whitespace-separated files
-spec(buoy)
-#> cols(
-#>   year = col_character()
-#> )
+# buoy <- read_table("buoy_2024.txt.webloc") # reads whitespace-separated files
+# spec(buoy)
 ```
 
 
@@ -101,7 +100,7 @@ We want to use snake_case for our variable names. Use the `janitor` package to c
 
 ```{r}
 #| label: clean-names
-buoy |> janitor::clean_names() # snake_case argument, cleans variable names
+# buoy |> janitor::clean_names() # snake_case argument, cleans variable names
 ```
 
 ## Step 4: Write the Data Part 1
@@ -113,7 +112,6 @@ Write the data to a `csv` file called `buoy_update.csv`. Be sure to write it to 
 #| label: write-data-part-1"
 write.csv(
   "buoy_2024.txt.webloc", file = "data-raw/buoy_update.csv")
-buoy_update <- read_csv("data-raw/buoy_update.csv", na = c("99, 999"))
 ```
 
 
@@ -128,7 +126,8 @@ Remember that now we are reading back in a data file of type `csv`. Now when you
 
 ```{r}
 #| label: load-data-again
-
+# buoydata <- read_csv(
+   # "data-raw/buoy_update.csv", col_types = list(.default = # col_double())
 ```
 
 This is great! But we created another problem. Now all of our numeric values are being treated like characters and we don't want that. There are a couple of ways to fix this. We can write and reread in the data setting the column types to `double` or we can use the `readr` parsing functions. 
@@ -137,8 +136,8 @@ Here is the code you can use to fix the data without exporting and importing aga
 
 ```{r}
 #| label: parse-double
-buoy_final <- your_file_name |> 
-  mutate(across(.cols = everything(), ~parse_double(.x)))
+# buoy_final <- "buoy_update.csv" |> 
+ # mutate(across(.cols = everything(), ~parse_double(.x)))
 ```
 
 
