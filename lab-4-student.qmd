@@ -110,8 +110,10 @@ We will have a bit of cleaning to do on the data, but we have an issue. The 99 a
 Write the data to a `csv` file called `buoy_update.csv`. Be sure to write it to your `data-raw` folder.  
 
 ```{r}
-#| label: write-data-part-1
-
+#| label: write-data-part-1"
+write.csv(
+  "buoy_2024.txt.webloc", file = "data-raw/buoy_update.csv")
+buoy_update <- read_csv("data-raw/buoy_update.csv", na = c("99, 999"))
 ```
 
 
